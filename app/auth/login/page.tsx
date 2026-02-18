@@ -1,13 +1,12 @@
 "use client";
 
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import Image from "next/image";
 import google from "@/assets/google.png";
 
-const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!);
-
 export default function Page() {
+  const supabase = createClient();
   const signInWithGoogle = async () => {
     await supabase.auth.signInWithOAuth({
       provider: "google",
