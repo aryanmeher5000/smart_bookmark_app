@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Bookmark } from "@/components/display_bookmarks";
 import { createClient } from "@/lib/supabase/client";
+import useBookmarksRealtime from "./useBookmarksRealtime";
 
 const PAGE_SIZE = 10;
 
@@ -19,6 +20,8 @@ export default function useGetUserBookmarks(): GetBookmarkHook {
   const [hasNextPage, setHasNextPage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const pageRef = useRef(0);
+
+  useBookmarksRealtime(setData);
 
   const fetchPage = useCallback(async (pageNumber: number) => {
     setIsLoading(true);
