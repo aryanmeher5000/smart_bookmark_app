@@ -4,6 +4,7 @@ import { useActionState, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { createBookmark } from "@/app/actions/bookmark";
 import { PlusIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 type State = {
   error?: string;
@@ -13,14 +14,10 @@ function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <button
-      type="submit"
-      disabled={pending}
-      className="flex gap-2 justify-center align-center bg-accent text-accent-foreground px-6 py-3 rounded-lg font-medium hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
-    >
+    <Button type="submit" disabled={pending}>
       <PlusIcon />
       {pending ? "Saving..." : "Create Bookmark"}
-    </button>
+    </Button>
   );
 }
 
