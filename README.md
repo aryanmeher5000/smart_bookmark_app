@@ -134,6 +134,6 @@ Focused on practical implementation:
 
 ---
 
-## 📷 Demo
+## Demo
 
 View Deployed Project: https://smart-bookmark-k8w2jjb0h-aryan-mehers-projects.vercel.app
