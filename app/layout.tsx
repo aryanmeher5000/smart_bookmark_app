@@ -6,6 +6,7 @@ import Link from "next/link";
 import { AuthButton } from "@/components/auth-button";
 import { Suspense } from "react";
 import { BookmarkCheck } from "lucide-react";
+import { ThemeSwitcher } from "@/components/theme-switcher";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
@@ -31,9 +32,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 Bookmarks
               </Link>
 
-              <Suspense fallback={null}>
-                <AuthButton />
-              </Suspense>
+              <div className="flex gap-2">
+                <Suspense fallback={null}>
+                  <AuthButton />
+                </Suspense>
+
+                <ThemeSwitcher />
+              </div>
             </div>
           </nav>
 
