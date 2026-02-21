@@ -1,109 +1,139 @@
-<a href="https://demo-nextjs-with-supabase.vercel.app/">
-  <img alt="Next.js and Supabase Starter Kit - the fastest way to build apps with Next.js and Supabase" src="https://demo-nextjs-with-supabase.vercel.app/opengraph-image.png">
-  <h1 align="center">Next.js and Supabase Starter Kit</h1>
-</a>
+# 🔖 Smart Bookmarks
 
-<p align="center">
- The fastest way to build apps with Next.js and Supabase
-</p>
+A bookmark management web app that allows users to securely save and access their links in real time.
 
-<p align="center">
-  <a href="#features"><strong>Features</strong></a> ·
-  <a href="#demo"><strong>Demo</strong></a> ·
-  <a href="#deploy-to-vercel"><strong>Deploy to Vercel</strong></a> ·
-  <a href="#clone-and-run-locally"><strong>Clone and run locally</strong></a> ·
-  <a href="#feedback-and-issues"><strong>Feedback and issues</strong></a>
-  <a href="#more-supabase-examples"><strong>More Examples</strong></a>
-</p>
-<br/>
+Built using Next.js App Router and Supabase for a lean, production-ready full-stack architecture.
 
-## Features
+---
 
-- Works across the entire [Next.js](https://nextjs.org) stack
-  - App Router
-  - Pages Router
-  - Proxy
-  - Client
-  - Server
-  - It just works!
-- supabase-ssr. A package to configure Supabase Auth to use cookies
-- Password-based authentication block installed via the [Supabase UI Library](https://supabase.com/ui/docs/nextjs/password-based-auth)
-- Styling with [Tailwind CSS](https://tailwindcss.com)
-- Components with [shadcn/ui](https://ui.shadcn.com/)
-- Optional deployment with [Supabase Vercel Integration and Vercel deploy](#deploy-your-own)
-  - Environment variables automatically assigned to Vercel project
+## 🚀 Project Overview
 
-## Demo
+Smart Bookmarks enables users to:
 
-You can view a fully working demo at [demo-nextjs-with-supabase.vercel.app](https://demo-nextjs-with-supabase.vercel.app/).
+- Authenticate securely
+- Add, view, and delete bookmarks
+- Persist data in a cloud database
+- Sync updates in real time across tabs
+- Access protected routes
 
-## Deploy to Vercel
+The focus of this project was to build a scalable, secure application while making strong architectural decisions under time constraints.
 
-Vercel deployment will guide you through creating a Supabase account and project.
+---
 
-After installation of the Supabase integration, all relevant environment variables will be assigned to the project so the deployment is fully functioning.
+## 🛠 Tech Stack
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-supabase&project-name=nextjs-with-supabase&repository-name=nextjs-with-supabase&demo-title=nextjs-with-supabase&demo-description=This+starter+configures+Supabase+Auth+to+use+cookies%2C+making+the+user%27s+session+available+throughout+the+entire+Next.js+app+-+Client+Components%2C+Server+Components%2C+Route+Handlers%2C+Server+Actions+and+Middleware.&demo-url=https%3A%2F%2Fdemo-nextjs-with-supabase.vercel.app%2F&external-id=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-supabase&demo-image=https%3A%2F%2Fdemo-nextjs-with-supabase.vercel.app%2Fopengraph-image.png)
+- **Next.js (App Router)** – Routing, Server & Client Components, SSR
+- **Supabase**
+  - Authentication (OAuth)
+  - PostgreSQL Database
+  - Row Level Security (RLS)
+  - Realtime Subscriptions
+- **Tailwind CSS** – UI styling
 
-The above will also clone the Starter kit to your GitHub, you can clone that locally and develop locally.
+---
 
-If you wish to just develop locally and not deploy to Vercel, [follow the steps below](#clone-and-run-locally).
+## 🧠 Key Challenges & Solutions
 
-## Clone and run locally
+### 1️⃣ Rapid Tech Stack Adoption
 
-1. You'll first need a Supabase project which can be made [via the Supabase dashboard](https://database.new)
+**Challenge:** Limited familiarity with parts of the stack.
 
-2. Create a Next.js app using the Supabase Starter template npx command
+**Solution:**  
+Focused on practical implementation:
 
-   ```bash
-   npx create-next-app --example with-supabase with-supabase-app
-   ```
+- Understood Server vs Client Components
+- Structured protected routes correctly
+- Used Supabase client for both server and browser environments
 
-   ```bash
-   yarn create next-app --example with-supabase with-supabase-app
-   ```
+---
 
-   ```bash
-   pnpm create next-app --example with-supabase with-supabase-app
-   ```
+### 2️⃣ Supabase Setup & Configuration
 
-3. Use `cd` to change into the app's directory
+**Challenge:** No prior experience with Supabase authentication, policies, and Realtime.
 
-   ```bash
-   cd with-supabase-app
-   ```
+**Solution:**
 
-4. Rename `.env.example` to `.env.local` and update the following:
+- Configured OAuth authentication
+- Designed bookmark schema
+- Implemented RLS for per-user data isolation
+- Integrated Realtime subscriptions for live updates
 
-  ```env
-  NEXT_PUBLIC_SUPABASE_URL=[INSERT SUPABASE PROJECT URL]
-  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=[INSERT SUPABASE PROJECT API PUBLISHABLE OR ANON KEY]
-  ```
-  > [!NOTE]
-  > This example uses `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, which refers to Supabase's new **publishable** key format.
-  > Both legacy **anon** keys and new **publishable** keys can be used with this variable name during the transition period. Supabase's dashboard may show `NEXT_PUBLIC_SUPABASE_ANON_KEY`; its value can be used in this example.
-  > See the [full announcement](https://github.com/orgs/supabase/discussions/29260) for more information.
+---
 
-  Both `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` can be found in [your Supabase project's API settings](https://supabase.com/dashboard/project/_?showConnect=true)
+### 3️⃣ Architecture Decision: RLS vs Custom Backend
 
-5. You can now run the Next.js local development server:
+**Challenge:** Choosing between:
 
-   ```bash
-   npm run dev
-   ```
+- Building custom API routes
+- Querying the database directly from the client
 
-   The starter kit should now be running on [localhost:3000](http://localhost:3000/).
+**Decision:** Used Supabase RLS.
 
-6. This template comes with the default shadcn/ui style initialized. If you instead want other ui.shadcn styles, delete `components.json` and [re-install shadcn/ui](https://ui.shadcn.com/docs/installation/next)
+**Benefits:**
 
-> Check out [the docs for Local Development](https://supabase.com/docs/guides/getting-started/local-development) to also run Supabase locally.
+- Reduced backend boilerplate
+- Faster development
+- Secure row-level isolation
+- Simpler deployment architecture
 
-## Feedback and issues
+---
 
-Please file feedback and issues over on the [Supabase GitHub org](https://github.com/supabase/supabase/issues/new/choose).
+### 4️⃣ Realtime Sync Across Tabs
 
-## More Supabase examples
+**Challenge:** Ensuring updates reflect instantly across multiple open tabs.
 
-- [Next.js Subscription Payments Starter](https://github.com/vercel/nextjs-subscription-payments)
-- [Cookie-based Auth and the Next.js 13 App Router (free course)](https://youtube.com/playlist?list=PL5S4mPUpp4OtMhpnp93EFSo42iQ40XjbF)
-- [Supabase Auth and the Next.js App Router](https://github.com/supabase/supabase/tree/master/examples/auth/nextjs)
+**Solution:**
+
+- Used Supabase Realtime channels
+- Structured state management carefully
+- Separated data logic into reusable hooks
+
+---
+
+### 5️⃣ Managing Server vs Client Boundaries
+
+**Challenge:** Understanding when to use Server Components vs Client Components.
+
+**Solution:**
+
+- Server Components for protected data fetching
+- Client Components for interactive UI
+- Avoided unnecessary client-side fetching
+
+---
+
+### 6️⃣ Secure Data Access
+
+**Challenge:** Preventing users from accessing other users’ bookmarks.
+
+**Solution:** Implemented Row Level Security policies:
+
+- Users can only read/write their own rows
+- Security enforced at database level
+
+---
+
+## 🏗 Architecture Overview
+
+- Authentication handled by Supabase
+- Database queries secured via RLS
+- Realtime subscriptions for live updates
+- Next.js handles routing and rendering
+- Minimal traditional custom backend required
+
+---
+
+## 📌 Future Improvements
+
+- Bookmark folders / tagging
+- Search and filtering
+- Optimized pagination
+- Bookmark metadata previews
+- Drag-and-drop reordering
+- Unit and integration testing
+
+---
+
+## 📷 Demo
+
+View Deployed Project: https://smart-bookmark-k8w2jjb0h-aryan-mehers-projects.vercel.app
