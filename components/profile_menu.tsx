@@ -26,7 +26,7 @@ export function ProfileMenu({ email }: { email: string }) {
         className="cursor-pointer text-foreground hover:opacity-80 transition"
         aria-label="Profile menu"
       >
-        <UserCircle size={28} />
+        <UserCircle size={32} />
       </button>
 
       {open && (
