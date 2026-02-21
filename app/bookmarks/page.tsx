@@ -1,17 +1,14 @@
 import AddBookmarkButton from "@/components/add_bookmark_button";
-import DisplayBookmarks, { Bookmark } from "@/components/display_bookmarks";
+import DisplayBookmarks from "@/components/display_bookmarks";
 
 export default function ProtectedPage() {
   return (
-    <div className="bg-background">
-      {/* Header Section */}
-      <div className="min-w-[60vw] max-w-6xl mx-auto mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-card rounded-xl shadow-sm">
-        <h1 className="text-2xl font-semibold text-foreground">Your Bookmarks</h1>
-
+    <div className="w-full max-w-6xl mx-auto flex flex-col gap-8">
+      <div className="md:flex min-w-[72vw] items-center justify-between">
+        <h1 className="text-2xl font-semibold mb-4 md:mb-0">Your Bookmarks</h1>
         <AddBookmarkButton />
       </div>
 
-      {/* Bookmark Grid */}
       <DisplayBookmarks />
     </div>
   );
